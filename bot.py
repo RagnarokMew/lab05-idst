@@ -21,6 +21,8 @@ import asyncio
 import re
 from discord.ext import commands    # Bot class and utils
 
+import argparse # lab5
+
 ################################################################################
 ############################### HELPER FUNCTIONS ###############################
 ################################################################################
@@ -188,6 +190,14 @@ async def play(ctx, song: str):
 # PUT IT WHERE YOU NEED IT
 
 if __name__ == '__main__':
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-t','--token', help="A discord bot token")
+    args = parser.parse_args()
+
+    if args.token:
+        bot.run(args.token)
+
     # check that token exists in environment
     if 'BOT_TOKEN' not in os.environ:
         log_msg('save your token in the BOT_TOKEN env variable!', 'error')
